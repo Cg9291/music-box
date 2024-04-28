@@ -28,19 +28,42 @@ import kick from "../audio/Midnight Sillage Kit/Electric Piano 01 - Midnight Sil
   */
 
 export default function Container(props) {
-  const [volume, setVolume] = useState(50);
+	const [volume, setVolume] = useState(50);
 
-  function changeVolume(event) {
-    setVolume(event.target.value);
-  }
+	function changeVolume(event) {
+		setVolume(event.target.value);
+	}
 
-  return (
-    <div
-      id="drum-machine"
-      className="container-fluid justify-content-center align-items-center"
-    >
-      <div className="row">
-        <div
+	return (
+		<div
+			id="drum-machine"
+			className="container-fluid justify-content-center align-items-center"
+		>
+			<div className="row h-100">
+				<div
+					id="volume-container"
+					className="col-2 bg-warning"
+				></div>
+				<div
+					id="main-area"
+					className="col-10 bg-primary d-flex flex-column"
+				>
+					<div
+						id="power-row-container"
+						className="row bg-success"
+					></div>
+					<div
+						id="info-row-container"
+						className="row  bg-danger"
+					></div>
+					<div
+						id="drumpad-container"
+						className="row  bg-secondary"
+					>
+						<Buttons volume={volume} />
+					</div>
+				</div>
+				{/*  <div
           id="left-side"
           className="col-8 bg-black p-0"
         >
@@ -56,15 +79,15 @@ export default function Container(props) {
             </div>
             <Vinyl />
           </div>
-        </div>
+        </div> */}
 
-        <div
+				{/* <div
           id="right-side"
           className="col-4 m-0 p-0"
         >
           <Buttons volume={volume} />
-        </div>
-      </div>
-    </div>
-  );
+        </div> */}
+			</div>
+		</div>
+	);
 }
