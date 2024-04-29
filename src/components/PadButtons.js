@@ -2,7 +2,7 @@ import sax from "../audio/Midnight Sillage Kit/Sax_Midnight_Sillage.mp3";
 
 export default function PadButtons(props) {
 	return (
-		<div className="col ">
+		<div className="col  ">
 			<button
 				id={props.id}
 				ref={ref => (props.buttonRefs.current[props.keyid] = ref)}

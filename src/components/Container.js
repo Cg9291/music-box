@@ -59,9 +59,9 @@ export default function Container(props) {
 			<div className="row h-100">
 				<div
 					id="volume-container"
-					className="col-2 bg-warning p-0"
+					className="col-2 p-0"
 				>
-					<div className="row bg-primary m-0 p-0 h-100 w-100">
+					<div className="row bg-black m-0 p-0 h-100 w-100">
 						<input
 							type="range"
 							min={0}
@@ -74,11 +74,11 @@ export default function Container(props) {
 
 				<div
 					id="main-area"
-					className="col-10 bg-primary d-flex flex-column p-0"
+					className="col-10 d-flex flex-column p-0"
 				>
 					<div
 						id="power-row-container"
-						className="row bg-success mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
+						className="row bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
 					>
 						<svg
 							id="power-button"
