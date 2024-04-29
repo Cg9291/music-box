@@ -3,6 +3,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ToggleButton from "./ToggleButton.js";
 import Vinyl from "./Vinyl.js";
 import VinylContainer from "./VinylContainer.js";
+import Display from "./Display.js";
 //import "../buttons.scss";
 import clap_Sound from "../audio/basic sounds/clap.mp3";
 import closed_HH_Sound from "../audio/basic sounds/closed-HH.mp3";
@@ -29,6 +30,22 @@ import kick from "../audio/Midnight Sillage Kit/Electric Piano 01 - Midnight Sil
 
 export default function Container(props) {
 	const [volume, setVolume] = useState(50);
+	const [playing, setPlaying] = useState();
+	const [indicatorLightColor, setIndicatorLightColor] = useState("black");
+	const [toggle, setToggle] = useState(true);
+
+	useEffect(() => {
+		toggle && setPlaying(volume);
+	}, [toggle]);
+
+	const switchToggle = () => {
+		if (toggle) {
+			setToggle(false);
+		} else {
+			setToggle(true);
+			props.setPlaying(props.volume);
+		}
+	};
 
 	function changeVolume(event) {
 		setVolume(event.target.value);
@@ -42,25 +59,67 @@ export default function Container(props) {
 			<div className="row h-100">
 				<div
 					id="volume-container"
-					className="col-2 bg-warning"
-				></div>
+					className="col-2 bg-warning p-0"
+				>
+					<div className="row bg-primary m-0 p-0 h-100 w-100">
+						<input
+							type="range"
+							min={0}
+							max={100}
+							className="slider col-12 h-50 my-auto"
+							onChange={changeVolume}
+						/>
+					</div>
+				</div>
+
 				<div
 					id="main-area"
-					className="col-10 bg-primary d-flex flex-column"
+					className="col-10 bg-primary d-flex flex-column p-0"
 				>
 					<div
 						id="power-row-container"
-						className="row bg-success"
-					></div>
+						className="row bg-success mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
+					>
+						<svg
+							id="power-button"
+							viewBox="0 0 100 100"
+							className="col-2 col-sm-1 p-0 ms-2"
+							/* style={{ width: "10%" }} */
+						>
+							<circle
+								cx="50"
+								cy="50"
+								r="50"
+								fill={indicatorLightColor}
+							/>
+						</svg>
+						<ToggleButton
+							toggle={toggle}
+							switchToggle={switchToggle}
+						/>
+					</div>
 					<div
 						id="info-row-container"
-						className="row  bg-danger"
-					></div>
+						className="row bg-danger mx-0 "
+					>
+						<Display
+							playing={playing}
+							toggle={toggle}
+						/>
+					</div>
 					<div
 						id="drumpad-container"
-						className="row  bg-secondary"
+						className="row bg-secondary mx-0"
 					>
-						<Buttons volume={volume} />
+						<Buttons
+							volume={volume}
+							playing={playing}
+							setPlaying={setPlaying}
+							indicatorLightColor={indicatorLightColor}
+							setIndicatorLightColor={setIndicatorLightColor}
+							toggle={toggle}
+							switchToggle={switchToggle}
+						/>
 					</div>
 				</div>
 				{/*  <div

@@ -5,28 +5,13 @@ export default function PadButtons(props) {
 		<button
 			id={props.id}
 			ref={ref => (props.buttonRefs.current[props.keyid] = ref)}
-			className="btn drum-btn btn-dark p-0"
+			className="col btn drum-btn btn-dark mx-1 px-0"
 			onClick={() => props.playSound([props.keyid])}
 			style={{ boxShadow: `2px 5px ${props.boxshadowcolor}` }}
 		>
-			{/* <svg
-				viewBox="0 0 100 100"
-				fill="white"
-        z-index="1"
-			></svg> */}
-			{/* 	<text
-				x="50%"
-				y="55%"
-				textAnchor="middle"
-				dominantBaseline="middle"
-				letterSpacing="0"
-				textLength="100%"
-				lengthAdjust="Glyphs"
-				className="button-text"
-			> */}
-			<div className="fs-3">{props.keyid}</div>
-
-			{/* </text> */}
+			<div className="fs-3 d-flex align-items-center justify-content-center">
+				{props.keyid}
+			</div>
 
 			<audio
 				id={props.keyid}

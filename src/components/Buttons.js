@@ -20,31 +20,36 @@ import kick from "../audio/Midnight Sillage Kit/Electric Piano 01 - Midnight Sil
 
 export default function Buttons(props) {
 	const buttonRefs = useRef([]); //using REFCALLBACK to dynamically target specific node/element
-
 	const audioRefs = useRef([]);
 
-	const [playing, setPlaying] = useState();
-	const [toggle, setToggle] = useState(true);
+	useEffect(() => {
+		props.setPlaying(props.volume);
+	}, [props.volume]);
 
-	const [indicatorLightColor, setIndicatorLightColor] = useState("black");
-
-	const switchToggle = () => {
-		if (toggle) {
-			setToggle(false);
+	useLayoutEffect(() => {
+		if (!props.toggle) {
+			props.setPlaying();
+			props.setIndicatorLightColor("bg-dark");
 		} else {
-			setToggle(true);
-			setPlaying(props.volume);
+			props.setIndicatorLightColor("red");
 		}
-	};
+	}, [props.toggle]);
+
+	useLayoutEffect(() => {
+		if (props.toggle) {
+			window.addEventListener("keypress", handleKeyPress, false);
+		}
+		return () => window.removeEventListener("keypress", handleKeyPress, false);
+	}, [props.toggle, props.volume]);
 
 	function playSound(keyid) {
-		if (toggle) {
+		if (props.toggle) {
 			const btnDefaultClass = buttonRefs.current.Q.className;
 
 			audioRefs.current[keyid].play();
 			audioRefs.current[keyid].volume = props.volume / 100;
 			buttonRefs.current[keyid].className += " pad-keys";
-			setPlaying(buttonRefs.current[keyid].id);
+			props.setPlaying(buttonRefs.current[keyid].id);
 
 			setTimeout(() => {
 				buttonRefs.current[keyid].className = btnDefaultClass;
@@ -59,32 +64,12 @@ export default function Buttons(props) {
 		audioRefs.current[pressedKey].play();
 		audioRefs.current[pressedKey].volume = props.volume / 100;
 		buttonRefs.current[pressedKey].className += " pad-keys";
-		setPlaying(buttonRefs.current[pressedKey].id);
+		props.setPlaying(buttonRefs.current[pressedKey].id);
 
 		setTimeout(() => {
 			buttonRefs.current[pressedKey].className = btnDefaultClass;
 		}, 100);
 	}
-
-	useEffect(() => {
-		setPlaying(props.volume);
-	}, [props.volume]);
-
-	useLayoutEffect(() => {
-		if (!toggle) {
-			setPlaying();
-			setIndicatorLightColor("bg-dark");
-		} else {
-			setIndicatorLightColor("red");
-		}
-	}, [toggle]);
-
-	useLayoutEffect(() => {
-		if (toggle) {
-			window.addEventListener("keypress", handleKeyPress, false);
-		}
-		return () => window.removeEventListener("keypress", handleKeyPress, false);
-	}, [toggle, props.volume]);
 
 	PadButtons.defaultProps = {
 		playSound: playSound,
@@ -92,117 +77,81 @@ export default function Buttons(props) {
 		audioRefs: audioRefs,
 	};
 
+	const rowStyle = "row pad-row w-100 px-3 gx-3";
+
 	return (
 		<div
-			id="buttons-pane"
-			className=" container-fluid d-flex flex-column  p-0 bg-black  "
+			id="pad"
+			className="col d-flex flex-column justify-content-evenly align-items-center h-100 m-0 px-0 py-0 bg-black"
 		>
-			{/* <div
-        id="indicators-row"
-        className="row mw-100 mt-2 m-0 p-0 mb-2 justify-content-between"
-      >
-        <svg
-          viewBox="0 0 100 100"
-          className=" h-50  mt-3 ms-3 justify-self-start "
-          style={{ width: "10%" }}
-        >
-          <circle
-            cx="50"
-            cy="50"
-            r="90"
-            fill={indicatorLightColor}
-          />
-        </svg>
-
-        <ToggleButton
-          toggle={toggle}
-          switchToggle={switchToggle}
-        />
-      </div> */}
-
-			<div
-				id="pad"
-				className="container-fluid d-flex flex-column justify-content-center align-items-center h-100"
-			>
-				<div className="row pad-row">
-					<PadButtons
-						id="1"
-						keyid="Q"
-						boxshadowcolor="red"
-					/>
-					<PadButtons
-						id="2"
-						keyid="W"
-						boxshadowcolor="blue"
-					/>
-					<PadButtons
-						id="3"
-						keyid="E"
-						boxshadowcolor="green"
-					/>
-					<PadButtons
-						id="4"
-						keyid="R"
-						boxshadowcolor="lightgreen"
-					/>
-				</div>
-
-				<div className="row pad-row">
-					<PadButtons
-						id="5"
-						keyid="A"
-						boxshadowcolor="purple"
-					/>
-					<PadButtons
-						id="6"
-						keyid="S"
-						boxshadowcolor="brown"
-					/>
-					<PadButtons
-						id="7"
-						keyid="D"
-						boxshadowcolor="orange"
-					/>
-					<PadButtons
-						id="8"
-						keyid="F"
-						boxshadowcolor="lightgreen"
-					/>
-				</div>
-
-				<div className="row pad-row">
-					<PadButtons
-						id="9"
-						keyid="Z"
-						boxshadowcolor="turquoise"
-					/>
-					<PadButtons
-						id="10"
-						keyid="X"
-						boxshadowcolor="yellow"
-					/>
-					<PadButtons
-						id="11"
-						keyid="C"
-						boxshadowcolor="white"
-					/>
-					<PadButtons
-						id="12"
-						keyid="V"
-						boxshadowcolor="lightgreen"
-					/>
-				</div>
+			<div className={rowStyle}>
+				<PadButtons
+					id="1"
+					keyid="Q"
+					boxshadowcolor="red"
+				/>
+				<PadButtons
+					id="2"
+					keyid="W"
+					boxshadowcolor="blue"
+				/>
+				<PadButtons
+					id="3"
+					keyid="E"
+					boxshadowcolor="green"
+				/>
+				<PadButtons
+					id="4"
+					keyid="R"
+					boxshadowcolor="lightgreen"
+				/>
 			</div>
 
-			{/* <div
-        id="display"
-        className="row d-flex  p-0  justify-content-center bg-warning col-6 fs-2 fw-bold align-items-center mx-auto my-auto  "
-        style={{ minHeight: "10vh" }}
-      >
-        <div className="col-11 h-75 d-flex align-items-center justify-content-center border border-dark ">
-          {playing}
-        </div>
-      </div> */}
+			<div className={rowStyle}>
+				<PadButtons
+					id="5"
+					keyid="A"
+					boxshadowcolor="purple"
+				/>
+				<PadButtons
+					id="6"
+					keyid="S"
+					boxshadowcolor="brown"
+				/>
+				<PadButtons
+					id="7"
+					keyid="D"
+					boxshadowcolor="orange"
+				/>
+				<PadButtons
+					id="8"
+					keyid="F"
+					boxshadowcolor="lightgreen"
+				/>
+			</div>
+
+			<div className={rowStyle}>
+				<PadButtons
+					id="9"
+					keyid="Z"
+					boxshadowcolor="turquoise"
+				/>
+				<PadButtons
+					id="10"
+					keyid="X"
+					boxshadowcolor="yellow"
+				/>
+				<PadButtons
+					id="11"
+					keyid="C"
+					boxshadowcolor="white"
+				/>
+				<PadButtons
+					id="12"
+					keyid="V"
+					boxshadowcolor="lightgreen"
+				/>
+			</div>
 		</div>
 	);
 }
