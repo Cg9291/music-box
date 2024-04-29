@@ -77,14 +77,13 @@ export default function Buttons(props) {
 		audioRefs: audioRefs,
 	};
 
-	const rowStyle = "row pad-row w-100 px-3 gx-3";
-
 	return (
 		<div
 			id="pad"
-			className="col d-flex flex-column justify-content-evenly align-items-center h-100 m-0 px-0 py-0 bg-black"
+			className="col-12 align-content-center m-0 px-0 py-0 bg-black"
 		>
-			<div className={rowStyle}>
+			{/* justify-content-evenly align-items-center */}
+			<div className="row row-cols-4 mx-1 gx-3 gy-3">
 				<PadButtons
 					id="1"
 					keyid="Q"
@@ -105,9 +104,8 @@ export default function Buttons(props) {
 					keyid="R"
 					boxshadowcolor="lightgreen"
 				/>
-			</div>
-
-			<div className={rowStyle}>
+				{/* </div> */}
+				{/* <div className={rowStyle}> */}
 				<PadButtons
 					id="5"
 					keyid="A"
@@ -128,9 +126,8 @@ export default function Buttons(props) {
 					keyid="F"
 					boxshadowcolor="lightgreen"
 				/>
-			</div>
-
-			<div className={rowStyle}>
+				{/* </div>
+			<div className={rowStyle}> */}
 				<PadButtons
 					id="9"
 					keyid="Z"
