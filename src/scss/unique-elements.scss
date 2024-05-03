@@ -1,0 +1,32 @@
+//Unique Elements
+.power-button {
+	@media screen and (orientation: landscape) {
+		max-height: 50%;
+		margin-left: 0 !important;
+	}
+}
+.prc {
+	//power row container
+	@media screen and (orientation: landscape) {
+		flex: 0 0 5% !important;
+	}
+}
+.irc {
+	//info row container
+	@media screen and (orientation: landscape) {
+		flex: 0 0 15%;
+	}
+}
+.dpc {
+	//drumpad container
+	flex: 1 0 0;
+	@media screen and (orientation: landscape) {
+		overflow: hidden;
+	}
+}
+.tbc {
+	//toggle-button-container
+	@media screen and (orientation: landscape) {
+		max-width: 15vw;
+	}
+}

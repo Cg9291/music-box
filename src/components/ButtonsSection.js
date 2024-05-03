@@ -18,7 +18,7 @@ import sax from "../audio/Midnight Sillage Kit/Sax_Midnight_Sillage.mp3";
 import electric_guitar_01 from "../audio/Midnight Sillage Kit/Electric Guitar 01 - Midnight Sillage.mp3";
 import kick from "../audio/Midnight Sillage Kit/Electric Piano 01 - Midnight Sillage.mp3";
 
-export default function Buttons(props) {
+export default function ButtonsSection(props) {
 	const buttonRefs = useRef([]); //using REFCALLBACK to dynamically target specific node/element
 	const audioRefs = useRef([]);
 
@@ -80,7 +80,7 @@ export default function Buttons(props) {
 	return (
 		<div
 			id="pad"
-			className="col-12 align-content-center  bg-black"
+			className="col-12 flex-100 align-content-center  bg-black"
 		>
 			{/* justify-content-evenly align-items-center */}
 			<div className="row row-cols-4  gx-2 gy-2">

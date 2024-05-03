@@ -1,0 +1,29 @@
+@use "./variables.scss";
+//Common Elements
+.btn {
+	border-radius: 10%;
+}
+.button-text {
+	font-size: 10vw;
+}
+.drum-btn {
+	@media screen and (orientation: landscape) {
+		height: 15vh;
+		border-radius: 4px;
+	}
+}
+.pad-col {
+	max-height: variables.$pad-col-height;
+}
+.pad-keys {
+	color: red;
+	animation: blink 1s;
+}
+@keyframes blink {
+	0% {
+		background-color: red;
+	}
+	100% {
+		background-color: black;
+	}
+}

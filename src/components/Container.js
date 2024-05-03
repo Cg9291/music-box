@@ -1,4 +1,4 @@
-import Buttons from "./Buttons.js";
+import ButtonsSection from "./ButtonsSection.js";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ToggleButton from "./ToggleButton.js";
 import Vinyl from "./Vinyl.js";
@@ -21,9 +21,6 @@ import kick from "../audio/Midnight Sillage Kit/Electric Piano 01 - Midnight Sil
 /*
  TODOS:
  -import all sounds directly into PadButtons component
- -add instrument id to PadButtons components
- -rework alignment for buttons letters
- -add responsiveness to indicator
  - fix issue where btndefault class would either get overwritten or wont be ran in timeout after long pressing a key
  - download better sounds(maybe look at Logic Pro (in files))
   */
@@ -54,7 +51,7 @@ export default function Container(props) {
 	return (
 		<div
 			id="drum-machine"
-			className="container-fluid justify-content-center align-items-center"
+			className="container-fluid justify-content-center align-items-center  vh-100"
 		>
 			<div className="row h-100">
 				<div
@@ -74,16 +71,16 @@ export default function Container(props) {
 
 				<div
 					id="main-area"
-					className="col-10 d-flex flex-column p-0 b-0"
+					className="col-10 d-flex flex-column p-0 b-0 h-100"
 				>
 					<div
 						id="power-row-container"
-						className="row b-0 bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
+						className="row prc flex-0015 power-button b-0 bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
 					>
 						<svg
 							id="power-button"
 							viewBox="0 0 100 100"
-							className="col-2 col-sm-1 col-md-2 p-0 ms-2 "
+							className="col-3 power-button col-sm-1 col-md-2 p-0 ms-2 mh-50 "
 							preserveAspectRatio="xMinYMid"
 						>
 							<circle
@@ -100,7 +97,7 @@ export default function Container(props) {
 					</div>
 					<div
 						id="info-row-container"
-						className="row b-0 bg-black mx-0 px-2 justify-content-center "
+						className="row irc flex-0025 b-0 bg-black mx-0 px-2 justify-content-center "
 					>
 						<Display
 							playing={playing}
@@ -109,9 +106,9 @@ export default function Container(props) {
 					</div>
 					<div
 						id="drumpad-container"
-						className="row bg-secondary mx-0"
+						className="row dpc flex-100 bg-secondary mx-0"
 					>
-						<Buttons
+						<ButtonsSection
 							volume={volume}
 							playing={playing}
 							setPlaying={setPlaying}
