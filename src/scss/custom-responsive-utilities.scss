@@ -9,3 +9,12 @@
 @include custom.makeResponsive(mh-80) {
 	max-height: 80%;
 }
+
+@include custom.makeResponsive(fs) {
+	&-1 {
+	}
+	&-2 {
+	}
+	&-3 {
+	}
+}

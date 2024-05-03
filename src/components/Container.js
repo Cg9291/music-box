@@ -75,7 +75,7 @@ export default function Container(props) {
 				>
 					<div
 						id="power-row-container"
-						className="row prc flex-0015 power-button b-0 bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
+						className="row prc flex-0015 b-0 bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
 					>
 						<svg
 							id="power-button"
