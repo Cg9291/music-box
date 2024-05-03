@@ -29,7 +29,7 @@ export default function Buttons(props) {
 	useLayoutEffect(() => {
 		if (!props.toggle) {
 			props.setPlaying();
-			props.setIndicatorLightColor("bg-dark");
+			props.setIndicatorLightColor("grey");
 		} else {
 			props.setIndicatorLightColor("red");
 		}
@@ -80,10 +80,10 @@ export default function Buttons(props) {
 	return (
 		<div
 			id="pad"
-			className="col-12 align-content-center m-0 px-0 py-0 bg-black"
+			className="col-12 align-content-center  bg-black"
 		>
 			{/* justify-content-evenly align-items-center */}
-			<div className="row row-cols-4 mx-1 gx-3 gy-3">
+			<div className="row row-cols-4  gx-2 gy-2">
 				<PadButtons
 					id="1"
 					keyid="Q"

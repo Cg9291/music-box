@@ -10,10 +10,9 @@
 }
 
 .drum-btn {
-	//width: 22%;
 	@media screen and (orientation: landscape) {
-		//width: auto;
 		height: 15vh;
+		border-radius: 4px;
 	}
 }
 
@@ -26,11 +25,6 @@ input[type="range"],
 	-webkit-appearance: slider-vertical; /* Hides the slider so that custom slider can be made */
 	//width: 10vh; /* Specific width is required for Firefox. */
 	height: 33%;
-	//  margin-top: auto;
-	//  margin-bottom:auto;
-	/* margin-top: 95vh;
-   margin-left: -20vw;
-   margin-right: 0; */
 	appearance: slider-vertical;
 	background: red; /* Otherwise white in Chrome */
 	border: solid yellow;
@@ -64,12 +58,6 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .pad-row {
-	/* @media screen and (orientation: landscape) {
-		flex: 0 0 30%;
-		//height: 100%;
-		overflow: hidden;
-	} */
-	//background-color: green;
 }
 
 .vinyl-grey-parts {
@@ -88,6 +76,10 @@ input[type="range"]::-webkit-slider-thumb {
 #drum-machine {
 	height: 100vh;
 }
+
+#display {
+	box-sizing: content-box;
+}
 #indicators-row {
 	max-height: 10vh;
 	height: 10vh;
@@ -102,12 +94,16 @@ input[type="range"]::-webkit-slider-thumb {
 	@media screen and (min-width: 500px) {
 		max-height: 50%;
 	}
-	@media screen and (min-width: 800px) {
-		max-height: 70%;
+	@media screen and (min-width: 768px) {
+		//max-height: 60%;
 	}
+	/* @media screen and (min-width: 800px) {
+		max-height: 70%;
+	} */
 
 	@media screen and (orientation: landscape) {
 		max-height: 50%;
+		margin-left: 0 !important;
 	}
 }
 #power-row-container {

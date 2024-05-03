@@ -5,7 +5,7 @@ export default function ToggleButton(props) {
 				<div
 					className={` ${
 						props.toggle ? "order-first" : "order-last"
-					} col p-0 text-center align-content-center`}
+					} col p-0 text-center align-content-center `}
 				>
 					{props.toggle ? "ON" : "OFF"}
 				</div>

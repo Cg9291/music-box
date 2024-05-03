@@ -74,17 +74,17 @@ export default function Container(props) {
 
 				<div
 					id="main-area"
-					className="col-10 d-flex flex-column p-0"
+					className="col-10 d-flex flex-column p-0 b-0"
 				>
 					<div
 						id="power-row-container"
-						className="row bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
+						className="row b-0 bg-black mx-0 w-100 h-100 d-flex justify-content-between align-items-center"
 					>
 						<svg
 							id="power-button"
 							viewBox="0 0 100 100"
-							className="col-2 col-sm-1 p-0 ms-2"
-							/* style={{ width: "10%" }} */
+							className="col-2 col-sm-1 col-md-2 p-0 ms-2 "
+							preserveAspectRatio="xMinYMid"
 						>
 							<circle
 								cx="50"
@@ -100,7 +100,7 @@ export default function Container(props) {
 					</div>
 					<div
 						id="info-row-container"
-						className="row bg-danger mx-0 "
+						className="row b-0 bg-black mx-0 px-2 justify-content-center "
 					>
 						<Display
 							playing={playing}
