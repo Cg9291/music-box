@@ -1,6 +1,6 @@
-import sax from "../audio/Midnight Sillage Kit/Sax_Midnight_Sillage.mp3";
+import { audioKeyMappings } from "../objects/audio-key-mappings.js";
 
-export default function PadButtons(props) {
+export default function Button(props) {
 	return (
 		<div className="col  ">
 			<button
@@ -18,7 +18,7 @@ export default function PadButtons(props) {
 					id={props.keyid}
 					ref={ref => (props.audioRefs.current[props.keyid] = ref)}
 					className="clip"
-					src={sax}
+					src={audioKeyMappings[props.keyid].audio}
 				>
 					Your browser does not support this type of file.
 				</audio>
