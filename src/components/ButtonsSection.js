@@ -1,6 +1,5 @@
 /*had to convert Midnight Sillage Kit (logic macbook sounds) from aif to mp3 using online converter*/
-
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "./Button.js";
 import { audioKeyMappings } from "../objects/audio-key-mappings.js";
 
@@ -12,28 +11,23 @@ export default function ButtonsSection(props) {
 		props.setPlaying(props.volume);
 	}, [props.volume]);
 
-	useLayoutEffect(() => {
-		if (!props.toggle) {
-			props.setPlaying(); //remove
-			props.setIndicatorLightColor("grey");
-		} else {
-			props.setIndicatorLightColor("red");
-		}
+	useEffect(() => {
+		props.toggle
+			? props.setIndicatorLightColor("red")
+			: props.setIndicatorLightColor("grey");
 	}, [props.toggle]);
 
-	useLayoutEffect(() => {
-		if (props.toggle) {
-			window.addEventListener("keypress", handleKeyPress, false);
-		}
+	useEffect(() => {
+		props.toggle && window.addEventListener("keypress", handleKeyPress, false);
 		return () => window.removeEventListener("keypress", handleKeyPress, false);
-	}, [props.toggle, props.volume]); //maybe remove props.volume dependency
+	}, [props.toggle]);
 
 	function playSound(keyid) {
 		if (props.toggle) {
 			const btnDefaultClass = buttonRefs.current.Q.className;
-
-			audioRefs.current[keyid].play();
+			audioRefs.current[keyid].currentTime = 0;
 			audioRefs.current[keyid].volume = props.volume / 100;
+			audioRefs.current[keyid].play();
 			buttonRefs.current[keyid].className += " pad-keys";
 			props.setPlaying(buttonRefs.current[keyid].id);
 
@@ -46,7 +40,7 @@ export default function ButtonsSection(props) {
 	function handleKeyPress(event) {
 		const btnDefaultClass = buttonRefs.current.Q.className;
 		let pressedKey = event.key.toUpperCase();
-
+		audioRefs.current[pressedKey].currentTime = 0;
 		audioRefs.current[pressedKey].play();
 		audioRefs.current[pressedKey].volume = props.volume / 100;
 		buttonRefs.current[pressedKey].className += " pad-keys";
@@ -109,8 +103,7 @@ export default function ButtonsSection(props) {
 					keyid="F"
 					boxshadowcolor="lightgreen"
 				/>
-				{/* </div>
-			<div className={rowStyle}> */}
+
 				<Button
 					id={audioKeyMappings.Z.name}
 					keyid="Z"
