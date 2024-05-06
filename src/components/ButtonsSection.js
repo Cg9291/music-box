@@ -1,6 +1,6 @@
 /*had to convert Midnight Sillage Kit (logic macbook sounds) from aif to mp3 using online converter*/
 import React, { useEffect, useRef } from "react";
-import Button from "./Button.js";
+import PadButton from "./Button.js";
 import { audioKeyMappings } from "../objects/audio-key-mappings.js";
 
 export default function ButtonsSection(props) {
@@ -18,17 +18,27 @@ export default function ButtonsSection(props) {
 	}, [props.toggle]);
 
 	useEffect(() => {
-		props.toggle && window.addEventListener("keypress", handleKeyPress, false);
-		return () => window.removeEventListener("keypress", handleKeyPress, false);
+		if (props.toggle) {
+			window.addEventListener("keypress", handleKeyPress, false);
+			window.addEventListener("keyup", handleKeyUp, false);
+		}
+		return () => {
+			window.removeEventListener("keypress", handleKeyPress, false);
+			window.removeEventListener("keypress", handleKeyUp, false);
+		};
 	}, [props.toggle]);
+
+	const btnDefaultClass =
+		"p-0 justify-content-center btn pad-btn btn-dark ratio ratio-1x1";
+
+	const animatedBtnClass = " animated-pad-btn"; //should include a space at start of string
 
 	function playSound(keyid) {
 		if (props.toggle) {
-			const btnDefaultClass = buttonRefs.current.Q.className;
 			audioRefs.current[keyid].currentTime = 0;
 			audioRefs.current[keyid].volume = props.volume / 100;
 			audioRefs.current[keyid].play();
-			buttonRefs.current[keyid].className += " pad-keys";
+			buttonRefs.current[keyid].className += animatedBtnClass;
 			props.setPlaying(buttonRefs.current[keyid].id);
 
 			setTimeout(() => {
@@ -38,20 +48,20 @@ export default function ButtonsSection(props) {
 	}
 
 	function handleKeyPress(event) {
-		const btnDefaultClass = buttonRefs.current.Q.className;
-		let pressedKey = event.key.toUpperCase();
+		const pressedKey = event.key.toUpperCase();
 		audioRefs.current[pressedKey].currentTime = 0;
 		audioRefs.current[pressedKey].play();
 		audioRefs.current[pressedKey].volume = props.volume / 100;
-		buttonRefs.current[pressedKey].className += " pad-keys";
+		buttonRefs.current[pressedKey].className += animatedBtnClass;
 		props.setPlaying(buttonRefs.current[pressedKey].id);
-
-		setTimeout(() => {
-			buttonRefs.current[pressedKey].className = btnDefaultClass;
-		}, 100);
 	}
 
-	Button.defaultProps = {
+	function handleKeyUp(event) {
+		const pressedKey = event.key.toUpperCase();
+		buttonRefs.current[pressedKey].className = btnDefaultClass;
+	}
+
+	PadButton.defaultProps = {
 		playSound: playSound,
 		buttonRefs: buttonRefs,
 		audioRefs: audioRefs,
@@ -63,63 +73,63 @@ export default function ButtonsSection(props) {
 			className="col-12 flex-100 align-content-center  bg-black"
 		>
 			<div className="row row-cols-4 gx-2 gy-2">
-				<Button
+				<PadButton
 					id={audioKeyMappings.Q.name}
 					keyid="Q"
 					boxshadowcolor="red"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.W.name}
 					keyid="W"
 					boxshadowcolor="blue"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.E.name}
 					keyid="E"
 					boxshadowcolor="green"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.R.name}
 					keyid="R"
 					boxshadowcolor="lightgreen"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.A.name}
 					keyid="A"
 					boxshadowcolor="purple"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.S.name}
 					keyid="S"
 					boxshadowcolor="brown"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.D.name}
 					keyid="D"
 					boxshadowcolor="orange"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.F.name}
 					keyid="F"
 					boxshadowcolor="lightgreen"
 				/>
 
-				<Button
+				<PadButton
 					id={audioKeyMappings.Z.name}
 					keyid="Z"
 					boxshadowcolor="turquoise"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.X.name}
 					keyid="X"
 					boxshadowcolor="yellow"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.C.name}
 					keyid="C"
 					boxshadowcolor="white"
 				/>
-				<Button
+				<PadButton
 					id={audioKeyMappings.V.name}
 					keyid="V"
 					boxshadowcolor="lightgreen"

@@ -2,11 +2,14 @@
 //Common Elements
 .btn {
 	border-radius: 10%;
+	&:focus {
+		background-color: variables.$focused-btn-background-color;
+	}
 }
 .button-text {
 	font-size: 10vw;
 }
-.drum-btn {
+.pad-btn {
 	@media screen and (orientation: landscape) {
 		height: 15vh;
 		border-radius: 4px;
@@ -15,15 +18,15 @@
 .pad-col {
 	max-height: variables.$pad-col-height;
 }
-.pad-keys {
-	color: red;
-	animation: blink 1s;
+.animated-pad-btn {
+	background-color: red !important;
+	animation: blink auto;
 }
-@keyframes blink {
+/* @keyframes blink {
 	0% {
 		background-color: red;
 	}
 	100% {
-		background-color: black;
+		background-color: red;
 	}
-}
+} */
