@@ -3,10 +3,6 @@ import React, { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton.js";
 import Display from "./Display.js";
 
-/*
- TODOS:
- - fix issue where btndefault class would either get overwritten or wont be ran in timeout after long pressing a key
-  */
 
 export default function Container(props) {
 	const [volume, setVolume] = useState(50);

@@ -19,14 +19,14 @@ export default function ButtonsSection(props) {
 
 	useEffect(() => {
 		if (props.toggle) {
-			window.addEventListener("keypress", handleKeyPress, false);
+			window.addEventListener("keydown", handleKeyPress, false);
 			window.addEventListener("keyup", handleKeyUp, false);
 		}
 		return () => {
-			window.removeEventListener("keypress", handleKeyPress, false);
-			window.removeEventListener("keypress", handleKeyUp, false);
+			window.removeEventListener("keydown", handleKeyPress, false);
+			window.removeEventListener("keyup", handleKeyUp, false);
 		};
-	}, [props.toggle]);
+	}, [props]);
 
 	const btnDefaultClass =
 		"p-0 justify-content-center btn pad-btn btn-dark ratio ratio-1x1";
@@ -40,7 +40,7 @@ export default function ButtonsSection(props) {
 			audioRefs.current[keyid].play();
 			buttonRefs.current[keyid].className += animatedBtnClass;
 			props.setPlaying(buttonRefs.current[keyid].id);
-
+			console.log(keyid, audioKeyMappings[keyid].audio);
 			setTimeout(() => {
 				buttonRefs.current[keyid].className = btnDefaultClass;
 			}, 100);
@@ -50,10 +50,11 @@ export default function ButtonsSection(props) {
 	function handleKeyPress(event) {
 		const pressedKey = event.key.toUpperCase();
 		audioRefs.current[pressedKey].currentTime = 0;
-		audioRefs.current[pressedKey].play();
 		audioRefs.current[pressedKey].volume = props.volume / 100;
+		audioRefs.current[pressedKey].play();
 		buttonRefs.current[pressedKey].className += animatedBtnClass;
 		props.setPlaying(buttonRefs.current[pressedKey].id);
+		console.log(pressedKey);
 	}
 
 	function handleKeyUp(event) {
