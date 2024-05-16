@@ -32,10 +32,10 @@ export const audioKeyMappings = {
 	R: { name: "Tape", audio: tape },
 	A: { name: "Open High Hat ", audio: open_HH_Sound },
 	S: { name: "Clap", audio: clap },
-	D: { name: "Hatt", audio: kick_n_hat_Sound },
+	D: { name: "Hat", audio: kick_n_hat_Sound },
 	F: { name: "Closed High Hat", audio: closed_HH },
-	Z: { name: "Electric piano", audio: electric_piano },
-	X: { name: "Electric piano 03", audio: electric_piano_03 },
+	Z: { name: "Electric Piano", audio: electric_piano },
+	X: { name: "Electric Piano 03", audio: electric_piano_03 },
 	C: { name: "Sax", audio: sax },
 	V: { name: "Trumpet", audio: trumpet },
 };
