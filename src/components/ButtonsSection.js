@@ -92,7 +92,7 @@ export default function ButtonsSection(props) {
 				<PadButton
 					id={audioKeyMappings.R.name}
 					keyid="R"
-					boxshadowcolor="lightgreen"
+					boxshadowcolor="blueviolet"
 				/>
 				<PadButton
 					id={audioKeyMappings.A.name}
@@ -112,7 +112,7 @@ export default function ButtonsSection(props) {
 				<PadButton
 					id={audioKeyMappings.F.name}
 					keyid="F"
-					boxshadowcolor="lightgreen"
+					boxshadowcolor="burlywood"
 				/>
 
 				<PadButton
