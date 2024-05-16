@@ -1,6 +1,74 @@
 @import "../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/bootstrap/scss/_functions.scss";
+@import "../node_modules/bootstrap/scss/_variables.scss";
+@import "../node_modules/bootstrap/scss/_mixins.scss";
 
-@media screen and (orientation: landscape) {
+@mixin sm {
+	@include media-breakpoint-up(sm) {
+		&-sm {
+			@content;
+		}
+	}
+}
+@mixin md {
+	@include media-breakpoint-up(md) {
+		&-md {
+			@content;
+		}
+	}
+}
+@mixin lg {
+	@include media-breakpoint-up(lg) {
+		&-lg {
+			@content;
+		}
+	}
+}
+@mixin xl {
+	@include media-breakpoint-up(xl) {
+		&-xl {
+			@content;
+		}
+	}
+}
+@mixin xxl {
+	@include media-breakpoint-up(xxl) {
+		&-xxl {
+			@content;
+		}
+	}
+}
+
+@mixin makeResponsive($className) {
+	.#{$className} {
+		@content;
+
+		@include sm {
+			@content;
+		}
+		@include md {
+			@content;
+		}
+		@include lg {
+			@content;
+		}
+		@include xl {
+			@content;
+		}
+		@include xxl {
+			@content;
+		}
+	}
+}
+
+/* @include makeResponsive() {
+	&-1 {
+		font-size: 24px !important;
+	}
+} */
+
+/* @media screen and (orientation: landscape) {
 	$utilities: map-merge(
 		$utilities,
 		(
@@ -20,3 +88,4 @@
 		)
 	);
 }
+ */
